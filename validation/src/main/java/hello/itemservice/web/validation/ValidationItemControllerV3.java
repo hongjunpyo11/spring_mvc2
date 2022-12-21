@@ -28,7 +28,7 @@ public class ValidationItemControllerV3 {
 
     @InitBinder
     public void init(WebDataBinder dataBinder) {
-        dataBinder.addValidators();
+        dataBinder.addValidators(itemValidator);
     }
 
     @GetMapping
