@@ -12,7 +12,7 @@ public class Item {
 
     private Long id;
 
-    @NotBlank // 빈값 + 공백만 있는 경우를 허용하지 않는다.
+    @NotBlank(message = "공백X") // 빈값 + 공백만 있는 경우를 허용하지 않는다.
     private String itemName;
 
     @NotNull
