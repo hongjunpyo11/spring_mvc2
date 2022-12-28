@@ -1,5 +1,6 @@
 package hello.typeconverter.controller;
 
+import hello.typeconverter.type.IpPort;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,9 +23,21 @@ public class HelloController {
         System.out.println("data = " + data);
         return "ok";
     }
+
+    @GetMapping("/ip-port")
+    public String ipPort(@RequestParam IpPort ipPort) {
+        System.out.println("ipPort.getIp() = " + ipPort.getIp());
+        System.out.println("ipPort.getPort() = " + ipPort.getPort());
+        return "ok";
+    }
 }
 
 /**
- * 문자를 숫자로 변환하거나, 반대로 숫자를 문자로 변환해야 하는 것 처럼
- * 애플리케이션을 개발하다 보면 타입을 변환해야 하는 경우가 상당히 많다.
+ * "/hello-v2"
+ * ?data=10 의 쿼리 파라미터는 문자이고 이것을 Integer data 로 변환하는 과정이 필요하다.
+ * 실행해보면 직접 등록한 StringToIntegerConverter 가 작동하는 로그를 확인할 수 있다.
+ *
+ * 그런데 생각해보면 StringToIntegerConverter 를 등록하기 전에도 이 코드는 잘 수행되었다.
+ * 그것은 스프링이 내부에서 수 많은 기본 컨버터들을 제공하기 때문이다.
+ * 컨버터를 추가하면 추가한 컨버터가 기본 컨버터 보다 높은 우선순위를 가진다.
  */
